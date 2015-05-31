@@ -1,6 +1,7 @@
 package Photon;
 
 import Photon.DataBase.ListWorker;
+import Photon.DataBase.ListWorker2;
 import Photon.DataBase.User;
 import Photon.Enums.DrawFigure;
 import Photon.Enums.Music;
@@ -1097,7 +1098,8 @@ if (gameStatus != -1) {
         if ((gameConfiguration.playersAmount + gameConfiguration.isBot) == 1) {
             for (GOPlayer player : players) {
                 User user = new User(playerName.toString(), (int) player.score, new Time((integerTime / 3600), (integerTime / 60) % 60, integerTime % 60), (new java.sql.Date(new Date().getTime())));
-                ListWorker.DBWorker.insert(user);
+//                ListWorker.DBWorker.insert(user);
+                new ListWorker2().add(user);
                 System.out.println("OK");
             }
         }

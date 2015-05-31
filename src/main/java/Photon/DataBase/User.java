@@ -1,6 +1,7 @@
 package Photon.DataBase;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -12,10 +13,11 @@ import java.util.ArrayList;
 @Entity
 @Table(name = "top_list")
 @NamedQuery(name = "User.getAll", query = "SELECT c from User c")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id", length = 6, nullable = false)
     private int id = 0;
     @Column(name = "name")
     private String name;
@@ -32,8 +34,12 @@ public class User {
 
     public static String defaultName = "Player";
 
+    public User() {
+
+    }
     public User(String name, int score, Time time, Date date) {
         this.id = setId();
+        System.out.println("ID: "+id);
         this.name = name;
         this.score = score;
         this.placeInTopList = setPlaceInTopList(this.score);
@@ -110,29 +116,6 @@ public class User {
         this.placeInTopList = placeInTopList;
     }
 
-    public int getId() {
-        return id;
-    }
-    public String getName() {
-        return name;
-    }
-    public int getPlaceInTopList() {
-        return placeInTopList;
-    }
-    public int getScore() {
-        return score;
-    }
-    public Time getBestTime() {
-        return bestTime;
-    }
-    public Date getGameDate() {
-        return gameDate;
-    }
-    public int isBestScoreInt() {
-        if(isBestScore)
-            return 1;
-        return 0;
-    }
     public boolean isBestScoreBool() {
         return isBestScore;
     }
@@ -152,7 +135,7 @@ public class User {
             best = 0;
         }
 
-        String str = "*" + name + "*" + score + "*" + bestTime + "*"+best+"*";
+        String str = "*" + name + "*" + score + "*" + bestTime + "*" + best + "*";
         return str;
     }
 
@@ -184,9 +167,13 @@ public class User {
     }
     public static int setId() {
         int tmpID = 1;
+        System.out.println("AAA");
         for(int i = 1; ListWorker.DBWorker.getUser(i) != null; i++) {
             tmpID = i+1;
+            System.out.println(i);
         }
+        System.out.println(ListWorker.DBWorker.getAll());
+        System.out.println(ListWorker.DBWorker.getUser(2));
 //        tmpID++;
         return tmpID;
     }
@@ -195,4 +182,56 @@ public class User {
             name += id;
         }
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public void setBestTime(Time bestTime) {
+        this.bestTime = bestTime;
+    }
+
+    public void setGameDate(Date gameDate) {
+        this.gameDate = gameDate;
+    }
+
+    public void setIsBestScore(boolean isBestScore) {
+        this.isBestScore = isBestScore;
+    }
+
+    public static void setDefaultName(String defaultName) {
+        User.defaultName = defaultName;
+    }
+
+    public boolean isBestScore() {
+        return isBestScore;
+    }
+    public int getId() {
+        return id;
+    }
+    public String getName() {
+        return name;
+    }
+    public int getPlaceInTopList() {
+        return placeInTopList;
+    }
+    public int getScore() {
+        return score;
+    }
+    public Time getBestTime() {
+        return bestTime;
+    }
+    public Date getGameDate() {
+        return gameDate;
+    }
+    public int isBestScoreInt() {
+        if(isBestScore)
+            return 1;
+        return 0;
+    }
+
 }

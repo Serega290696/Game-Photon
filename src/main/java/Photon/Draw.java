@@ -1,23 +1,20 @@
 package Photon;
 
-import Photon.DataBase.ListWorker;
-import Photon.DataBase.User;
+import Photon.DataBase.ListWorker2;
 import Photon.Enums.DrawFigure;
 import Photon.Enums.Music;
-import org.newdawn.slick.*;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.openal.Audio;
 import org.newdawn.slick.openal.AudioLoader;
 import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
-import java.awt.Font;
+import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.glPopMatrix;
 
 
 
@@ -974,8 +971,8 @@ int x =0;
         font1_1.drawString(400,250,"No          Name           Score         Time");
         if (pg == maxPg) {
             for (int i=j; i<=Game.maxElems-1;i++) {
-/*
-                String str = String.valueOf(ListWorker.getList(0, 100).get(i));
+
+                String str = String.valueOf(ListWorker2.getList(0, 100).get(i));
                 System.out.println(str +"str");
                 String name = str.substring(1, str.indexOf('*', 2));
                 int second = str.indexOf('*', 2);
@@ -1007,7 +1004,7 @@ int x =0;
                     x += 30;
 
                 }
-  */
+
             }
 
         }
@@ -1015,7 +1012,7 @@ int x =0;
 
             for (int i = j; i <= j + 9; i++) {
 
-               /* String str = String.valueOf(ListWorker.getList(0, 100).get(i));
+                String str = String.valueOf(ListWorker2.getList(0, 100).get(i));
                 String name = str.substring(1, str.indexOf('*', 2));
                 int second = str.indexOf('*',2);
                 String score = str.substring(second + 1, str.indexOf('*',second +1));
@@ -1045,7 +1042,7 @@ int x =0;
                     x += 30;
 
                 }
-*/
+
             }
         }
     }

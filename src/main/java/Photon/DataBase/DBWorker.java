@@ -128,7 +128,7 @@ package Photon.DataBase;
 //        }
 //        return users;
 //    }
-//    public static ArrayList<User> getAll() {
+//    public static ArrayList<User> getList() {
 //        ArrayList<User> users = new ArrayList<User>();
 //        try {
 //            preparedStatement = connection.prepareStatement(GET_ALL);
