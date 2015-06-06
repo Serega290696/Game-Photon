@@ -15,7 +15,11 @@
 <p>Графика реализована с помощью библиотеки LWJGL.</p>
 
 ## Authors
-Бельцер Сергей, Кацалап Роман, Борисюк Ира
+<ol>
+<li>Бельцер Сергей</li>
+<li>Кацалап Роман</li>
+<li>Борисюк Ира</li>
+</ol>
 
 ## UML-diagram
 ![UML-diagram](https://github.com/Serega290696/Game-Photon/blob/master/UML%20cd.png?raw=true)
