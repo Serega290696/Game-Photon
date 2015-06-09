@@ -1,9 +1,9 @@
 import Photon.Draw;
-import Photon.Exceptions.PlayerDoNotExist;
 import Photon.Game;
 import Photon.GameObjects.GOPhoton.GOPlayer;
 import Photon.Main;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -68,15 +68,17 @@ public class TestPlayersList {
 //        else i = -1;
         System.out.println("\n\n\n***"
                 + "\nMass size: \t\t" + specialMass.length
-                + "\nNot null elements: \t"+ (i)
-                + "\n***\n\n"
+                        + "\nNot null elements: \t"+ (i)
+                        + "\nNull elements: \t"+ (specialMass.length-i)
+                + "\n***\n<<<"
         );
+        Game.players.clear();
         Game.gameConfiguration.playersAmount = testPlayersAmount;
         Game.gameConfiguration.isBot = testIsBot;
     }
     @After
     public void finishMessage() {
-        System.out.println("\n\n\nFINISH TEST :)");
+        System.out.println("\n>>>\n");
         int i=0;
         if(specialMass[0] != null)
             for(i = 0; i < specialMass.length; i++) {
@@ -86,13 +88,22 @@ public class TestPlayersList {
         System.out.println("***"
                 + "\nMass size: \t\t" + specialMass.length
                 + "\nNot null elements: \t"+ (i)
-                + "\n***\n\n"
+                + "\nNull elements: \t"+ (specialMass.length-i)
+                + "\n***\n"
         );
     }
 
-    @Test(timeout = 5000)
-    public void specialMassOfPlayers() throws PlayerDoNotExist {
-        Game.addAllPlayers(specialMass);
+    @Test
+    public void specialMassOfPlayers() {
+        Main.game.addAllPlayers(specialMass);
+        Assert.assertSame("Not all players was added!\n"
+                +"Need add: " + specialMass.length
+                +".\nWas added: " + Main.game.players.size()+"\n",
+                specialMass.length, Main.game.players.size());
+        for(int i = 0; i < Main.game.players.size(); i++) {
+            System.out.println((i+1) + ". " + Main.game.players.get(i));
+            Assert.assertNotNull(Main.game.players.get(i));
+        }
     }
 
 }
