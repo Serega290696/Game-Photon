@@ -21,7 +21,7 @@
 <li>Борисюк Ира</li>
 </ol>
 
-## Descriptiong
+## Description
 <p>"Photon" - computer game. In this game you play photon, who is sucked in Black Hole.
 Your goal: collect white triangles and avoid red rectangles.
 If you will not do this, you will become closer to Black Hole. 
