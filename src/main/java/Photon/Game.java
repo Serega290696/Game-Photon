@@ -32,7 +32,7 @@ public class Game implements IGame{
     public static GameConfiguration gameConfigurationNew;
 
     public GOPlayer player;
-    public static GOPlayer player2;
+    public  GOPlayer player2;
     public static GOBlackHole blackHole = new GOBlackHole();
     public static ArrayList<GOPlayer> players = new ArrayList<GOPlayer>();
     public static ArrayList<GOPhotonFon> fon = new ArrayList<GOPhotonFon>();
@@ -57,7 +57,7 @@ public class Game implements IGame{
 
 //    public static float moveOnStep = 20f/ Main.em;
 
-    public static boolean second = false;
+    public  boolean second = false;
 
 
     public static float defMoveOnStep = gameConfiguration.defMoveOnStep;
@@ -93,7 +93,6 @@ public class Game implements IGame{
     public static boolean isBt;
 
     public static BufferedReader br;
-
     public Game() {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -108,14 +107,26 @@ public class Game implements IGame{
             if (!Draw.musicIsPlaying(Music.FON1))
             Draw.musicPlay(Music.FON1);
         }
-
-        maxPg = (ListWorker.getList(0,100).size())/10;
-
-        if ((ListWorker.getList(0,100).size() - ((ListWorker.getList(0,100).size())/10) > 0))
-            ++maxPg;
+        try {
+                maxPg = (ListWorker2.getList(0,100).size())/10; }
+        catch(NullPointerException nullex) {
+            maxPg=1;
+        }
+        try {
+            if ((ListWorker2.getList(0, 100).size() - ((ListWorker2.getList(0, 100).size()) / 10) > 0))
+                ++maxPg;
+        }
+        catch (NullPointerException nullp) {
+            maxPg=1;
+        }
 
        // System.out.println(maxPg+"maxPg");
-        maxElems = ListWorker.getList(0,100).size();
+        try {
+            maxElems = ListWorker2.getList(0, 100).size();
+        }
+        catch(NullPointerException nnsdf) {
+            maxElems = 0;
+        }
        // System.out.println(maxElems+"maxElems");
         clear();
         controlMode = 2;
@@ -848,53 +859,91 @@ if (gameStatus != -1) {
 
 
 
-    public static void addAllPlayers(GOPlayer massOfPlayers[]) throws PlayerDoNotExist{
-
+    public  void addAllPlayers(GOPlayer massOfPlayers[]) {
         for(int i = 0; i < massOfPlayers.length; i++) {
             try {
-                players.add(massOfPlayers[i]);
-                massOfPlayers[i].iAdded();
-                // ïîïûòêà îáû÷íûì ñïîñîáîì äîáàâèòü èãðîêà.
-            } catch(NullPointerException e) {
-                // Â ñëó÷àå îøèáêè. Ýòîò ìåòîä ïîïûòàåòñÿ âîññîçäàòü ìàññèâ èãðîêîâ.
-                repairMassOfPlayers(massOfPlayers);
+                addToPlayers(massOfPlayers[i]);
+                // Ð¿Ð¾Ð¿Ñ‹Ñ‚ÐºÐ° Ð¾Ð±Ñ‹Ñ‡Ð½Ñ‹Ð¼ ÑÐ¿Ð¾ÑÐ¾Ð±Ð¾Ð¼ Ð´Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð¸Ð³Ñ€Ð¾ÐºÐ°.
+            } catch(PlayerDoNotExist e) {
+                // Ð’ ÑÐ»ÑƒÑ‡Ð°Ðµ Ð¾ÑˆÐ¸Ð±ÐºÐ¸. Ð­Ñ‚Ð¾Ñ‚ Ð¼ÐµÑ‚Ð¾Ð´ Ð¿Ð¾Ð¿Ñ‹Ñ‚Ð°ÐµÑ‚ÑÑ Ð²Ð¾ÑÑÐ¾Ð·Ð´Ð°Ñ‚ÑŒ Ð¼Ð°ÑÑÐ¸Ð² Ð¸Ð³Ñ€Ð¾ÐºÐ¾Ð².
+
                 try {
-                    // ìåòîä ñïðàâèëñÿ ñî ñâîåé çàäà÷åé.
-                    players.add(massOfPlayers[i]);
-                    massOfPlayers[i].iAdded();
-                } catch (NullPointerException unrealToRepair) {
-                    // åñëè æå ìåòîä âñå òàêè íå ñìîã ïîíÿòü êàêîãî èìåííî èãðîêà íå õâàòàåò.
-                    throw new PlayerDoNotExist("ERROR! Player do not exist! Player #" + (i + 1) + " = NULL. ");
+                    repairMassOfPlayers(massOfPlayers);
+                    // Ð¼ÐµÑ‚Ð¾Ð´ ÑÐ¿Ñ€Ð°Ð²Ð¸Ð»ÑÑ ÑÐ¾ ÑÐ²Ð¾ÐµÐ¹ Ð·Ð°Ð´Ð°Ñ‡ÐµÐ¹.
+                    addToPlayers(massOfPlayers[i]);
+                } catch (PlayerDoNotExist unrealToRepair) {
+                    // ÐµÑÐ»Ð¸ Ð¶Ðµ Ð¼ÐµÑ‚Ð¾Ð´ Ð²ÑÐµ Ñ‚Ð°ÐºÐ¸ Ð½Ðµ ÑÐ¼Ð¾Ð³ Ð¿Ð¾Ð½ÑÑ‚ÑŒ ÐºÐ°ÐºÐ¾Ð³Ð¾ Ð¸Ð¼ÐµÐ½Ð½Ð¾ Ð¸Ð³Ñ€Ð¾ÐºÐ° Ð½Ðµ Ñ…Ð²Ð°Ñ‚Ð°ÐµÑ‚.
+                    System.err.println("Cannot Repair Array of Players" + unrealToRepair.getMessage());
+                }
+            }
+        }
+
+    }
+
+    public  void addToPlayers(GOPlayer addedPlayer) throws PlayerDoNotExist{
+        if(addedPlayer == null) {
+            throw new PlayerDoNotExist("Some Players do not created!");
+        }
+        else {
+            players.add(addedPlayer);
+        }
+    }
+    public  void repairMassOfPlayers(GOPlayer massOfPlayers[]) throws PlayerDoNotExist{
+        if(massOfPlayers.length < gameConfiguration.playersAmount + gameConfiguration.isBot) {
+            throw new PlayerDoNotExist("Some Players do not created!");
+        }
+        for(int i = 0; i < gameConfiguration.playersAmount + gameConfiguration.isBot; i++) {
+            if(massOfPlayers[i] == null) {
+                    massOfPlayers[i] = addPlayer(massOfPlayers, i);
+                if(massOfPlayers[i] == null) {
+                    throw new PlayerDoNotExist("Some Players do not created!");
                 }
             }
         }
     }
 
-    public static void repairMassOfPlayers(GOPlayer massOfPlayers[]) throws PlayerDoNotExist{
-        if(massOfPlayers.length < gameConfiguration.playersAmount + gameConfiguration.isBot) {
-            throw new PlayerDoNotExist("Some Players do not created!");
-            // ñðàáîòàåò â ëþáîì ñëó÷àå?
-        }
-        for(int i = 0; i < gameConfiguration.playersAmount + gameConfiguration.isBot; i++) {
-            if(massOfPlayers[i] == null) {
-                massOfPlayers[i] = addPlayer(massOfPlayers, i);
+
+    private  GOPlayer addPlayer(final GOPlayer massOfPlayers[], final int amountCorrectlyCreatedPlayers) {
+        int bots = 0;
+        int players = 0;
+        // ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ°. ÐšÐ°ÐºÐ¾Ð³Ð¾ Ð²Ð¸Ð´Ð° Ð¸Ð³Ñ€Ð¾ÐºÐ° ÐµÑ‰Ðµ Ð½Ðµ ÑÐ¾Ð·Ð´Ð°Ð½Ð¾ (Ð±Ð¾Ñ‚\Ð½Ðµ Ð±Ð¾Ñ‚) Ð¸ Ð¡ÐžÐ—Ð”ÐÐÐ˜Ð• ÐÐ•Ð”ÐžÐ¡Ð¢ÐžÐ®Ð©Ð•Ð“Ðž Ð˜Ð“Ð ÐžÐšÐ.
+        // Ð”Ð»Ñ ÑÑ‚Ð¾Ð³Ð¾ Ð½ÑƒÐ¶Ð½Ð¾ Ð¿ÐµÑ€ÐµÐ±Ñ€Ð°Ñ‚ÑŒ Ð¼Ð°ÑÑÐ¸Ð² massOfPlayers[] Ð´Ð¾ Ð¸Ð³Ñ€Ð¾ÐºÐ° Ð½Ð¾Ð¼ÐµÑ€ - amountCorrectlyCreatedPlayers
+        for(int k=0; k<amountCorrectlyCreatedPlayers; k++) {
+            if (massOfPlayers[k].isBot) {
+                bots++;
+            } else {
+                players++;
             }
         }
-    }
-    private static GOPlayer addPlayer(final GOPlayer massOfPlayers[], final int amountCorrectlyCreatedPlayers) {
-        // Ïðîâåðêà. Êàêîãî âèäà èãðîêà åùå íå ñîçäàíî (áîò\íå áîò) è ÑÎÇÄÀÍÈÅ ÍÅÄÎÑÒÎÞÙÅÃÎ ÈÃÐÎÊÀ.
-        // Äëÿ ýòîãî íóæíî ïåðåáðàòü ìàññèâ massOfPlayers[] äî èãðîêà íîìåð - amountCorrectlyCreatedPlayers
-        if(false/*Óñëîâèÿ èç-çà êîòîðûõ íåëüçÿ âîññîçäàòü èãðîêà.*/) return null;
-        return GOPlayer.newBuilder()
-                .setXStart(GOPlayer.beginX)
-                .setYStart(65 * Main.ratio)
-                .setSize(2)
-                .setFigure(DrawFigure.CIRCLE)
-                .setName(User.defaultName + "_3")
-                .setColor(3)
-                .isBot(true)
-                .build()
-        ;
+
+        if(players < gameConfiguration.playersAmount) {
+            return GOPlayer.newBuilder()
+                    .setXStart(GOPlayer.beginX)
+                    .setYStart(65 * Main.ratio)
+                    .setSize(2)
+                    .setFigure(DrawFigure.CIRCLE)
+                    .setName(User.defaultName + "_3")
+                    .setColor(3)
+                    .isBot(false)
+                    .build()
+                    ;
+        }
+
+        if (bots<gameConfiguration.isBot) {
+            return GOPlayer.newBuilder()
+                    .setXStart(GOPlayer.beginX)
+                    .setYStart(65 * Main.ratio)
+                    .setSize(2)
+                    .setFigure(DrawFigure.CIRCLE)
+                    .setName(User.defaultName + "_3")
+                    .setColor(3)
+                    .isBot(true)
+                    .build()
+                    ;
+
+        }
+
+        return null;
     }
 
 
@@ -1099,8 +1148,13 @@ if (gameStatus != -1) {
             for (GOPlayer player : players) {
                 User user = new User(playerName.toString(), (int) player.score, new Time((integerTime / 3600), (integerTime / 60) % 60, integerTime % 60), (new java.sql.Date(new Date().getTime())));
 //                ListWorker.DBWorker.insert(user);
-                new ListWorker2().add(user);
-                System.out.println("OK");
+                 new ListWorker2().add(user);
+                System.out.println("OK,ADDED");
+//                try {
+//                    Thread.sleep(5000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
             }
         }
 
