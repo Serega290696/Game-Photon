@@ -18,7 +18,6 @@
 <ol>
 <li>Бельцер Сергей</li>
 <li>Кацалап Роман</li>
-<li>Борисюк Ира</li>
 </ol>
 
 ## Description
@@ -38,7 +37,6 @@ The game has table of records. Every your result will be entry in the table. </p
 <ol>
 <li>Beltser Serhii</li>
 <li>Katsalap Roman</li>
-<li>Borisuk Ira</li>
 </ol>
 
 ## UML-diagram
