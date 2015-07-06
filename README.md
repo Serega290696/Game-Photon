@@ -30,6 +30,9 @@ So you can perform your task.</p>
 The game has top list with the best players. Every your result will be entry in the table. </p>
 <p>Moreover you can play against bot or against your friends.</p>
 
+##Skill used
+Java SE, OpenGL (lwjgl), git, Junit, design patterns (builder, singleton), MySQL, JDBC. 
+
 ## Authors
 <ol>
 <li>Beltser Serhii</li>
