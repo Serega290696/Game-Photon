@@ -21,17 +21,14 @@
 </ol>
 
 ## Description
-<p>"Photon" - computer game. In this game you play photon, who is sucked in Black Hole.
+<p>"Photon" - computer game. In this game you are photon, who is sucked in Black Hole.
 Your goal: collect white triangles and avoid red rectangles.
 If you will not do this, you will become closer to Black Hole. 
 If you press key "Space", you change frequency of wave on which move photon.
 So you can perform your task.</p>
-<p>Таким образом Вы можете уклонятся от препятствий - красных квадратов, столкновение с которыми 
-ускорит Ваше приближение к черной дыре. А также подбирать бонусы которые повышая енергию фотона
-увеличивают расстояние между ним и черной дырой. </p>
-<p>Your goal is to survive as long as you can. During the game you permanent recieve scores. 
-The game has table of records. Every your result will be entry in the table. </p>
-<p>Moreover you can play against bot or versus your friends.</p>
+<p>Your goal is to survive as long as you can. During the game you permanent collect scores. 
+The game has top list with the best players. Every your result will be entry in the table. </p>
+<p>Moreover you can play against bot or against your friends.</p>
 
 ## Authors
 <ol>
