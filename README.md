@@ -20,6 +20,12 @@
 <li>Кацалап Роман</li>
 </ol>
 
+##Запуск проекта за 3 минуты
+1. Скачате, клонируйте или сделайте fork репозитория: https://github.com/Serega290696/Photon_executable_ver.without_DB
+2. Разархивируйте полученый материал.
+3. Запустите файл `LAUNCH.bat`
+4. Играйте! :)
+
 ## Description
 <p>"Photon" - computer game. In this game you are photon, who is sucked in Black Hole.
 Your goal: collect white triangles and avoid red rectangles.
@@ -41,3 +47,17 @@ Java SE, OpenGL (lwjgl), git, Junit, design patterns (builder, singleton), MySQL
 
 ## UML-diagram
 ![UML-diagram](https://github.com/Serega290696/Game-Photon/blob/master/UML%20cd.png?raw=true)
+
+## Скриншоты / Screenshots
+![image1](https://github.com/Serega290696/images/blob/master/Crypto/1.png?raw=true)
+![image2](https://github.com/Serega290696/images/blob/master/Crypto/2.png?raw=true)
+![image3](https://github.com/Serega290696/images/blob/master/Crypto/3.png?raw=true)
+![image4](https://github.com/Serega290696/images/blob/master/Crypto/4.png?raw=true)
+![image5](https://github.com/Serega290696/images/blob/master/Crypto/5.png?raw=true)
+![image6](https://github.com/Serega290696/images/blob/master/Crypto/6.png?raw=true)
+![image7](https://github.com/Serega290696/images/blob/master/Crypto/7.png?raw=true)
+![image8](https://github.com/Serega290696/images/blob/master/Crypto/8.png?raw=true)
+![image9](https://github.com/Serega290696/images/blob/master/Crypto/9.png?raw=true)
+![image10](https://github.com/Serega290696/images/blob/master/Crypto/10.png?raw=true)
+![image11](https://github.com/Serega290696/images/blob/master/Crypto/11.png?raw=true)
+![image12](https://github.com/Serega290696/images/blob/master/Crypto/12.png?raw=true)
